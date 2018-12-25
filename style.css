@@ -1,0 +1,52 @@
+* {
+  font-family: Roboto;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.height-100 {
+  height: 100vh;
+}
+
+a {
+  transition: all .2s ease-in;
+}
+
+a:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.container-login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#login-form {
+  height: 10rem !important;
+  width: 30rem !important;
+  margin: auto;
+}
+
+.blue-check {
+  background-color: blue !important;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.carousel-custom {
+  margin: 2rem auto;
+}
