@@ -12,8 +12,6 @@
   <body>
     <div class="main-container">
       <?php
-
-
         //login credentials for the mysql database
         $db_server = 'localhost:3308';
         $db_username = 'root';
@@ -24,8 +22,12 @@
         $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $uploadOk = 1;
+          $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+          $content = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
-          $link = $_POST['file-link'];
+          $location = "images/" . basename($_FILES['image']['tmp_name']);
+
           $parkour = 0;
           if(isset($_POST['parkour'])) {
             $parkour = 1;
@@ -36,12 +38,17 @@
             $photography = 1;
           }
 
+          $upload_success = false;
+
           $title = $_POST['file-caption'];
 
-          $add = "INSERT INTO image_table (title, link, parkour, photography) VALUES ('$title', '$link', $parkour, $photography)";
+          $add = "INSERT INTO image_table (title, image, parkour, photography) VALUES ('$title', '$content', $parkour, $photography)";
 
           if( $conn->query($add) === TRUE) {
-            header('Location: http://localhost/php_project');
+
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $location)) {
+              $upload_success = true;
+            }
           }
           else {
             echo mysqli_error($conn);
@@ -57,6 +64,14 @@
           header('Location: http://localhost/php_project/login');
         }
         echo "<p class='dashboard-p'>" .  ucfirst($name) . "'s Dashboard </p>";
+        if(isset($upload_success)) {
+          if($upload_success) {
+            echo '<br> <div class="alert alert-success alert-custom" role="alert"> <strong class="strong-custom"> Success</strong> Post was made! </div>';
+          }
+          else {
+            echo '<br> <div class="alert alert-danger alert-custom" role="alert"> <strong class="strong-custom">Error</strong> Post was not made! </div>';
+          }
+        }
       ?>
       <div class="dashboard-container">
         <div class="misc-container">
@@ -65,12 +80,10 @@
             $result = $conn->query($select);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
-                echo "<div class='img-dashboard-container'> <img src=" . $row['link'] . " class='dashboard-img'> <form class='block form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger block'> Delete </button> </form> </div>";
+                echo "<div class='img-dashboard'> <img src='data:image/jpeg;base64," .base64_encode( $row['image'] ). "'  class='dashboard-box'>  <form class='block translate-up form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger danger block'> Delete </button> </form> <p class='translate-up-small p-title'>" . $row['title'] . "</p> </div>";
               }
             }
           ?>
-        </div>
-        <div class="blackline">
         </div>
         <div class="file-container">
           <!-- Button trigger modal -->
@@ -89,14 +102,17 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form method="POST">
+                  <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                       <!-- <label for="text-file"> Caption </label>
                       <textarea type="text" class="form-control" id="text-file" style='resize: none'> </textarea> -->
                       <label class="text-white" for="file-caption"> Caption </label>
                       <input type="text" class="form-control" id="file-caption" name="file-caption" required>
-                      <label class="text-white" for="file-link"> Link </label>
-                      <input type="text" class="form-control" id="file-link" name="file-link" required>
+                      <br>
+                      <br>
+                      <label class="text-white" for="image"> Link </label>
+                      <br>
+                      <input type="file" name="image" id="image" />
                     </div>
                     <div class="tag-select-container">
                       <div class="btn-group-toggle" data-toggle="buttons">
@@ -124,6 +140,11 @@
         </div>
       </div>
     </div>
+    <script>
+      <?php
+        include 'public/dashboard.js';
+      ?>
+    </script>
     <?php
       include 'footer.php';
     ?>

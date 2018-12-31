@@ -30,7 +30,7 @@
           $db_name = 'php_project';
 
           //tries to make the connection
-          $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");
+          $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 
           $select = "SELECT * FROM image_table";
 
@@ -39,9 +39,8 @@
           if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-              $index = "m" . $row['id'];
+              $index = $row['id'];
               $image_caption = $row['title'];
-              $image_link = $row['link'];
               include 'image.php';
             }
           }
@@ -51,5 +50,10 @@
         include 'footer.php';
       ?>
     </div>
+    <script>
+    <?php
+      include 'public/img.js';
+    ?>
+    </script>
   </body>
 </html>

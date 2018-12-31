@@ -1,4 +1,5 @@
 <?php
+  $image_id = $_GET['id'];
   //login credentials for the mysql database
   $db_server = 'localhost:3308';
   $db_username = 'root';
@@ -7,11 +8,12 @@
 
   //tries to make the connection
   $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");
-  $create = "CREATE TABLE image_table (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), image LONGBLOB, parkour BIT, photography BIT)";
-  if($conn->query($create) === TRUE) {
-    echo "SUCCESS";
-  }
-  else {
-    echo mysqli_error($conn);
-  }
+
+  $select = "SELECT * FROM image_table WHERE id=$image_id" or die($conn->error);
+  $result = $conn->query($select);
+  $row = $result->fetch_assoc();
+  header('Content-type: image/jpeg');
+  //readfile($row['image']);
+
+  echo $row['image'];
 ?>
