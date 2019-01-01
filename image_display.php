@@ -1,5 +1,7 @@
 <?php
+  //gets the image id
   $image_id = $_GET['id'];
+
   //login credentials for the mysql database
   $db_server = 'localhost:3308';
   $db_username = 'root';
@@ -13,7 +15,6 @@
   $result = $conn->query($select);
   $row = $result->fetch_assoc();
   header('Content-type: image/jpeg');
-  //readfile($row['image']);
 
   echo $row['image'];
 ?>

@@ -1,8 +1,10 @@
+<!DOCTYPE html>
+<!-- RENDERS THE HOME PAGE -->
 <?php
+  //initializes the session
   ob_start();
   session_start();
 ?>
-<!DOCTYPE html>
 <html>
   <head>
     <?php
@@ -15,12 +17,21 @@
         include 'navbar.php';
       ?>
       <?php
+        //used to get the name of the session's user
         $name = "";
+
+        //checks to see if there is a session available
         if(isset($_SESSION['username'])) {
           $name = $_SESSION['username'];
         }
+        //adds the name of the sessions's user to the welcome string
         echo "<p id='welcome-text'> Welcome " . $name . "</p>";
       ?>
+      <div id="tag-container">
+        <button class="btn btn-primary" id="all-id"> No Tags </button>
+        <button class="btn btn-primary" id="photography-id"> Photography </button>
+        <button class="btn btn-primary" id="parkour-id"> Parkour </button>
+      </div>
       <div class="image-container">
         <?php
           //login credentials for the mysql database
@@ -32,15 +43,19 @@
           //tries to make the connection
           $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 
+          //selects the data from the image_table
           $select = "SELECT * FROM image_table";
 
+          //makes a query
           $result = $conn->query($select);
 
+          //checks to see if there are more than 0 rows
           if ($result->num_rows > 0) {
-            // output data of each row
+
+            //gets the row as an array
             while($row = $result->fetch_assoc()) {
-              $index = $row['id'];
-              $image_caption = $row['title'];
+
+              //renders the image using the image php file
               include 'image.php';
             }
           }
@@ -52,7 +67,7 @@
     </div>
     <script>
     <?php
-      include 'public/img.js';
+      include 'public/js/index.js';
     ?>
     </script>
   </body>

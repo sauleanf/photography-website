@@ -1,4 +1,7 @@
+<!DOCTYPE html>
+<!-- RENDERS THE LOGIN -->
 <?php
+  //initializes the session
   ob_start();
   session_start();
 ?>
@@ -61,7 +64,7 @@
               $_SESSION['username'] = $username;
 
               //redirects to the home page
-              header('Location: http://localhost/php_project/dashboard');
+              header('Location: dashboard');
             }
             //in case the password and/or username is wrong
             else {
