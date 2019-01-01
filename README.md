@@ -1,12 +1,12 @@
 # photography-website
 A personal website that uses php for the backend that allows the user to upload images
 
-*Home Page
+* Home Page
 
-*Dashboard Page 
+* Dashboard Page 
 
 ![Image](https://i.imgur.com/qH4QTUl.png)
 
-*Home Page
+* Home Page
 
 ![Image](https://i.imgur.com/h76ZmXY.png)
