@@ -5,7 +5,7 @@
     echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['image'] ).'"  class="image-box" data-toggle="modal" data-target="#m' . $row['id'] . '"';
   ?>
   <br>
-  <input type="hidden" value="<?php echo $row['parkour'] . $row['photography']; ?>">
+  <input type="hidden" value="<?php echo $row['parkour'] . $row['photography'] . "0"; ?>">
   <p>
     <?php
       $index = $row['id'];

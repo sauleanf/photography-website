@@ -15,57 +15,42 @@ const noTags = document.getElementById('all-id');
 const photography = document.getElementById('photography-id');
 const parkour = document.getElementById('parkour-id');
 
+//an array of those btns
+const elementArray = [photography, parkour, noTags];
+
+//changes the css off the all tags button immediately to indicate its active state
+elementArray[2].classList.add("tag-pressed");
+
 //gets an array of the card images elements
 const cardImages = document.getElementsByClassName('card-image');
 
-//event listener for the photography tag button
-photography.addEventListener('click', () => {
-  //changes the css of the tags buttons
-  photography.classList.add('tag-pressed');
-  parkour.classList.remove("tag-pressed");
-  noTags.classList.remove("tag-pressed");
-  //fades in all of the photography card images and fade out all of the rest
-  for(let i = 0; i < cardImages.length; i++) {
-    const parsedString = cardImages[i].children[1].getAttribute('value');
-    const parkour = parsedString[0];
-    const photography = parsedString[1];
-    if(photography === "1") {
-      $(cardImages[i]).fadeOut(200);
+/*iterates over the element array and attaches an event listener that manipulates
+the dom so that the posts (card images) without the tag are removed and the ones with the tags aren't
+*/
+for(let i = 0; i < elementArray.length; i++) {
+  elementArray[i].addEventListener('click', () => {
+    const index = i;
+    //change the background color of the buttons to show that it is active
+    for(let j = 0; j < elementArray.length; j++) {
+      const loopIndex = j;
+      //tag-pressed is the css class with the changed background
+      if(loopIndex === index) {
+        elementArray[loopIndex].classList.add('tag-pressed');
+      }
+      else {
+        elementArray[loopIndex].classList.remove('tag-pressed');
+      }
     }
-    else {
-      $(cardImages[i]).fadeIn(200);
+    //fades in all of the photography card images and fade out all of the rest
+    for(let j = 0; j < cardImages.length; j++) {
+      const parsedString = cardImages[j].children[1].getAttribute('value');
+      const tag = parsedString[i];
+      if(tag === "1") {
+        $(cardImages[j]).fadeOut(200);
+      }
+      else {
+        $(cardImages[j]).fadeIn(200);
+      }
     }
-  }
-});
-
-//event listener for the parkour tag button
-parkour.addEventListener('click', () => {
-  //changes the css of the tags buttons
-  photography.classList.remove('tag-pressed');
-  parkour.classList.add("tag-pressed");
-  noTags.classList.remove("tag-pressed");
-  //fades in all of the parkour card images and fade out all of the rest
-  for(let i = 0; i < cardImages.length; i++) {
-    const parsedString = cardImages[i].children[1].getAttribute('value');
-    const parkour = parsedString[0];
-    const photography = parsedString[1];
-    if(parkour === "1") {
-      $(cardImages[i]).fadeOut(200);
-    }
-    else {
-      $(cardImages[i]).fadeIn(200);
-    }
-  }
-});
-
-//event listener for the no tags button
-noTags.addEventListener('click', ()=> {
-  //changes the css of the tags buttons
-  photography.classList.remove('tag-pressed');
-  parkour.classList.remove("tag-pressed");
-  noTags.classList.add("tag-pressed");
-  //fades in all of the card images regardless of tags
-  for(let i = 0; i < cardImages.length; i++) {
-    $(cardImages[i]).fadeIn(200);
-  }
-})
+  });
+}
