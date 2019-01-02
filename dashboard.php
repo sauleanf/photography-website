@@ -108,7 +108,7 @@
             if ($result->num_rows > 0) {
               //echoes an element that represents each image with the option to delete
               while($row = $result->fetch_assoc()) {
-                echo "<div class='img-dashboard'> <img src='data:image/jpeg;base64," .base64_encode( $row['image'] ). "'  class='dashboard-box'>  <form class='block translate-up form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger danger block'> Delete </button> </form> <p class='translate-up-small p-title'>" . $row['title'] . "</p> </div>";
+                echo "<div class='img-dashboard'> <img src='data:image/jpeg;base64," .base64_encode( $row['image'] ). "'  class='dashboard-box'>  <form enctype='application/x-www-form-urlencoded' class='block translate-up form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger danger block'> Delete </button> </form> <p class='translate-up-small p-title'>" . $row['title'] . "</p> </div>";
               }
             }
           ?>
@@ -139,7 +139,12 @@
                       <br>
                       <label class="text-white" for="image"> Link </label>
                       <br>
-                      <input type="file" name="image" id="image" />
+                      <div class="input-group mb-3">
+                        <div class="custom-file">
+                          <input type="file" name="image" class="custom-file-input" id="image">
+                          <label class="custom-file-label" for="image">Choose Image</label>
+                        </div>
+                      </div>
                     </div>
                     <div class="tag-select-container">
                       <div class="btn-group-toggle" data-toggle="buttons">

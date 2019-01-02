@@ -9,13 +9,11 @@
   <p>
     <?php
       $index = $row['id'];
-      $site = "http://localhost/photography_site";
       echo $row['title'];
     ?>
   </p>
   <div class="tag-strip">
     <?php
-
       //gets the tags for each image (weird bug with the boolean values 1 is false and 0 is true for some reason)
       if($row['parkour'] === '0') {
         echo '<span class="badge badge-secondary">Parkour</span>';
@@ -30,7 +28,6 @@
       <div class="modal-content">
         <br>
         <div class="modal-title-container">
-
           <h5 class="modal-title text-white">
             <?php
               //title of image

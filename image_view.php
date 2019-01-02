@@ -40,33 +40,35 @@
         $image_caption = $row['title'];
       ?>
       <div id='view-image-container'>
-        <img src="<?php echo 'image_display?id=' . $index; ?>" class='image-view-box'>
-        <div class="flex-column center">
-          <p class="view-p">
+        <div class="image-view-box-parent">
+          <div class="share-view-container translate-down">
             <?php
-            echo $image_caption;
+              //for sharing on twitter
+              $share_link = "Check this out! $site/image_view?id=" . $row['id'];
+              $replace = str_replace(' ', '%20', $share_link );
+              $tweet_link = "https://twitter.com/intent/tweet?text=" . $replace;
             ?>
-          </p>
-          <a class='home-btn' href="/photography_site"> </a>
+            <a href="<?php echo $tweet_link; ?>" class="view-a twitter" data-show-count="false">
+              Tweet
+            </a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="view-a instagram">
+              Instagram
+            </a>
+            <a class="view-a youtube">
+              Youtube
+            </a>
+          </div>
+          <img src="<?php echo 'image_display?id=' . $index; ?>" class='image-view-box'>
+          <div class="hover-image">
+            <p class="translate-up view-p">
+              <?php
+                echo $image_caption;
+              ?>
+            </p>
+            <a class='home-btn translate-up' href="/photography_site"> </a>
+          </div>
         </div>
-      </div>
-      <div class="share-view-container">
-        <?php
-          //for sharing on twitter
-          $share_link = "Check this out! $site/image_view?id=" . $row['id'];
-          $replace = str_replace(' ', '%20', $share_link );
-          $tweet_link = "https://twitter.com/intent/tweet?text=" . $replace;
-        ?>
-        <a href="<?php echo $tweet_link; ?>" class="view-a twitter" data-show-count="false">
-          Tweet
-        </a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <a class="view-a instagram">
-          Instagram
-        </a>
-        <a class="view-a youtube">
-          Youtube
-        </a>
       </div>
       <?php
         include 'footer.php';

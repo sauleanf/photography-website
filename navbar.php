@@ -24,14 +24,17 @@
           //used for the link and settings (if there is no session, they remain with no characters)
           $link = "";
           $settings = "";
+          $register = "<a class='anchor-navbar' href='register'> Register </a>";
+          
           //checks to see if there is a session
           if(isset($_SESSION['username']))   {
             $status = "logout";
             $settings = "<a class='anchor-navbar' href='setting'> Settings </a>";
             $link = "<a class='anchor-navbar' href='/photography_site" . $href . "'> " . $text . " </a>";
+            $register = "";
           }
           //the navlink to the settings
-          echo $link ."<a class='anchor-navbar' href='/photography_site/$status'>" . ucfirst($status) . "</a>" . $settings;
+          echo $link .  $settings . "<a class='anchor-navbar' href='/photography_site/$status'>" . ucfirst($status) . "</a>" . $register;
         ?>
       </div>
     </div>

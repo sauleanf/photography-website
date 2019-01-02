@@ -1,19 +1,18 @@
 <!-- CONTAIN THE ELEMENT FOR THE FOOTER -->
 <div class="footer">
   <?php
-    //for sharing on twitter
-    $share_link = "Check this out!";
-    $replace = str_replace(' ', '%20', $share_link );
-    $tweet_link = "https://twitter.com/intent/tweet?text=" . $replace;
+    $twitter_username = "realDonaldTrump";
+    $instagram_username = "realDonaldTrump";
+    $youtube_username = "UCcjWLDMXtBttcTxyHUyoLOg";
   ?>
-  <a href="<?php echo $tweet_link; ?>" class="footer-a twitter" data-show-count="false">
-    Tweet
+  <a href="https://twitter.com/<?php echo $twitter_username; ?>" class="footer-a twitter" data-show-count="false">
+    Twitter
   </a>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <a class="footer-a instagram">
+  <a href="https://www.instagram.com/<?php echo $instagram_username; ?>/?hl=en" class="footer-a instagram">
     Instagram
   </a>
-  <a class="footer-a youtube">
+  <a href="https://www.youtube.com/channel/<?php echo $youtube_username; ?>" class="footer-a youtube">
     Youtube
   </a>
 </div>

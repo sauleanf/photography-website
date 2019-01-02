@@ -11,7 +11,7 @@
   ?>
   <body>
     <div class="full-window">
-      <form method="post" class="form-box">
+      <form method="post" class="form-box" enctype="application/x-www-form-urlencoded"> 
         <div class="form-group">
           <label for="inputUsername">Username</label>
           <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Enter username">
@@ -46,7 +46,7 @@
             $username = $_POST['username'];
 
             //queries the db to find the user
-            $sql = "SELECT * FROM users WHERE username='$username'";
+            $sql = "SELECT * FROM users_table WHERE username='$username'";
             $result = $conn->query($sql);
 
             //gets the row from the db as an object

@@ -11,6 +11,10 @@ body {
   justify-content: center;
 }
 
+.custom-file, .input-group, .custom-file-label, .custom-file-input {
+  border-radius: 0 !important;
+}
+
 .badge {
   border-radius: 0px;
   margin: 0 .5rem;
@@ -27,34 +31,77 @@ body {
 }
 
 .image-view-box {
-  height: calc(100vh - 15rem);
+  height: 25rem;
   width: auto;
+  max-width: 100vw;
+}
+
+.hover-image {
+  opacity: 0;
+  display: flex;
+  z-index: 100;
+  transition: all .2s ease-in;
+}
+
+.image-view-box-parent {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.image-view-box-parent:hover .share-view-container {
+  opacity: 1;
+  transform: translateY(6rem);
+}
+
+.image-view-box-parent:hover .hover-image {
+  opacity: 1;
+  transform: translateY(-1rem);
+}
+
+.image-view-box-parent img {
+  transition: all .2s ease-in;
+}
+
+.image-view-box-parent:hover img {
+  filter: opacity(.3);
+}
+
+.padding-title {
+  padding: .5rem;
 }
 
 #view-image-container {
   display: flex;
+  flex-direction: column;
   margin-top: 1rem;
 }
 
 .view-p {
   margin: 1rem !important;
-  color: #606060;
+  color: #303030;
 }
 
 .view-a {
   display: inline-block;
-  color: #606060 !important;
+  color: #303030 !important;
   margin: 1rem !important;
   transition: all .2s ease-in;
 }
 
 .view-a:hover {
   cursor: pointer;
-  color: #909090 !important;
+  color: #606060 !important;
 }
 
 .share-view-container {
-  display: flex;
+  display: inline-flex;
+  z-index: 120;
+  opacity: 0;
+  transition: all .2s ease-in;
+  transform: translateY(4.5rem);
 }
 
 .main-container {
@@ -148,6 +195,11 @@ body {
   color: #606060 !important;
   margin: 1rem !important;
   transition: all .2s ease-in;
+}
+
+.modal-p::before {
+  content: "\f064";
+  font-family: FontAwesome;
 }
 
 .modal-a {
@@ -286,7 +338,7 @@ h5 {
 
 .img-dashboard:hover p {
   opacity: 1;
-  transform: translateY(-5rem);
+  transform: translateY(-3rem);
 }
 
 .img-dashboard:hover img {
