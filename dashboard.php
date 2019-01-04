@@ -14,12 +14,6 @@
   <body>
     <div class="main-container">
       <?php
-        //login credentials for the mysql database
-        $db_server = 'localhost:3308';
-        $db_username = 'root';
-        $db_password = '';
-        $db_name = 'php_project';
-
         //tries to make the connection
         $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 
@@ -30,8 +24,6 @@
 
           //location for the temporary file
           $location = "images/" . basename($_FILES['image']['tmp_name']);
-
-          //echo $_FILES['image']['tmp_name'];
 
           //parkour tag is sent to 0 (false) and is only changed to 1 (true) if the button is pressed
           $parkour = 0;
@@ -108,7 +100,7 @@
             if ($result->num_rows > 0) {
               //echoes an element that represents each image with the option to delete
               while($row = $result->fetch_assoc()) {
-                echo "<div class='img-dashboard'> <img src='data:image/jpeg;base64," .base64_encode( $row['image'] ). "'  class='dashboard-box'>  <form enctype='application/x-www-form-urlencoded' class='block translate-up form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger danger block'> Delete </button> </form> <p class='translate-up-small p-title'>" . $row['title'] . "</p> </div>";
+                echo "<div class='img-dashboard'> <img src='data:image/jpeg;base64," .base64_encode( $row['image'] ). "'  class='dashboard-box'>  <form enctype='application/x-www-form-urlencoded' class='block translate-up form-column' method='post' action='delete.php'> <input name='image-id' type='hidden' value='" . $row['id'] . "'> <br> <button type='submit' class='btn btn-danger danger block'> Delete </button> </form> <p class='image-p-title'>" . $row['title'] . "</p> </div>";
               }
             }
           ?>

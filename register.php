@@ -17,21 +17,21 @@
           <label for="inputEmail">
             Email
           </label>
-          <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Enter new email">
+          <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Enter email">
         </div>
         <div class="form-group">
           <label for="inputUsername">
             Username
           </label>
-          <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Enter new username">
+          <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Enter username">
         </div>
         <div class="form-group">
           <label for="inputPassword1"> Password</label>
-          <input name="password1" type="text" class="form-control" id="inputPassword1" placeholder="Enter password">
+          <input name="password1" type="password" class="form-control" id="inputPassword1" placeholder="Enter password">
         </div>
         <div class="form-group">
           <label for="inputPassword2"> Password </label>
-          <input name="password2" type="text" class="form-control" id="inputPassword2" placeholder="Retype password">
+          <input name="password2" type="password" class="form-control" id="inputPassword2" placeholder="Retype password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -44,12 +44,7 @@
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
           //checks to see if the password input fields equal one another
           if($_POST['password1'] === $_POST['password2']) {
-            //login credentials for the mysql database
-            $db_server = 'localhost:3308';
-            $db_username = 'root';
-            $db_password = '';
-            $db_name = 'php_project';
-
+            
             //tries to make the connection
             $conn = mysqli_connect($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 

@@ -1,12 +1,12 @@
 <?php
-  //gets the image id
-  $image_id = $_GET['id'];
-
   //login credentials for the mysql database
-  $db_server = 'localhost:3308';
+  $db_server = 'localhost';
   $db_username = 'root';
   $db_password = '';
   $db_name = 'php_project';
+  
+  //gets the image id
+  $image_id = $_GET['id'];
 
   //tries to make the connection
   $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");

@@ -12,12 +12,6 @@
         //site's url
         $site = 'localhost/photography_site/';
 
-        //login credentials for the mysql database
-        $db_server = 'localhost:3308';
-        $db_username = 'root';
-        $db_password = '';
-        $db_name = 'php_project';
-
         //tries to make the connection
         $conn = new mysqli($db_server, $db_username, $db_password, $db_name) or die("could not connect");
 
@@ -66,7 +60,7 @@
                 echo $image_caption;
               ?>
             </p>
-            <a class='home-btn translate-up' href="/photography_site"> </a>
+            <a class='home-btn translate-up' href="/photography-website"> </a>
           </div>
         </div>
       </div>

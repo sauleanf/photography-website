@@ -16,7 +16,7 @@
           $text = "Home";
 
           //checks to see if the page isn't the dashboard so it can render specific elements
-          if($_SERVER['REQUEST_URI'] !== '/photography_site/dashboard') {
+          if($_SERVER['REQUEST_URI'] !== '/photography-website/dashboard') {
             $href = "/dashboard";
             $text = "Dashboard";
           }
@@ -25,16 +25,16 @@
           $link = "";
           $settings = "";
           $register = "<a class='anchor-navbar' href='register'> Register </a>";
-          
+
           //checks to see if there is a session
           if(isset($_SESSION['username']))   {
             $status = "logout";
             $settings = "<a class='anchor-navbar' href='setting'> Settings </a>";
-            $link = "<a class='anchor-navbar' href='/photography_site" . $href . "'> " . $text . " </a>";
+            $link = "<a class='anchor-navbar' href='/photography-website" . $href . "'> " . $text . " </a>";
             $register = "";
           }
           //the navlink to the settings
-          echo $link .  $settings . "<a class='anchor-navbar' href='/photography_site/$status'>" . ucfirst($status) . "</a>" . $register;
+          echo $link .  $settings . "<a class='anchor-navbar' href='/photography-website/$status'>" . ucfirst($status) . "</a>" . $register;
         ?>
       </div>
     </div>

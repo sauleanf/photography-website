@@ -29,13 +29,13 @@
       ?>
       <div id="tag-container">
         <button class="btn btn-primary" id="all-id"> No Tags </button>
-        <button class="btn btn-primary" id="photography-id"> Photography </button>
-        <button class="btn btn-primary" id="parkour-id"> Parkour </button>
+        <button class="btn btn-primary" id="parkour-id"> Photography </button>
+        <button class="btn btn-primary" id="photography-id"> Parkour </button>
       </div>
       <div class="image-container">
         <?php
           //login credentials for the mysql database
-          $db_server = 'localhost:3308';
+          $db_server = 'localhost';
           $db_username = 'root';
           $db_password = '';
           $db_name = 'php_project';

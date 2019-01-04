@@ -11,7 +11,7 @@
   ?>
   <body>
     <div class="full-window">
-      <form method="post" class="form-box" enctype="application/x-www-form-urlencoded"> 
+      <form method="post" class="form-box" enctype="application/x-www-form-urlencoded">
         <div class="form-group">
           <label for="inputUsername">Username</label>
           <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Enter username">
@@ -23,11 +23,6 @@
         <button type="submit" class="btn btn-primary">Log in</button>
       </form>
       <?php
-        //login credentials for the mysql database
-        $db_server = 'localhost:3308';
-        $db_username = 'root';
-        $db_password = '';
-        $db_name = 'php_project';
 
         //tries to make the connection
         $conn = new mysqli($db_server, $db_username, $db_password, $db_name);
